@@ -13,15 +13,12 @@ package despertador;
 public class Altavoz {
 
     static boolean ringON;
-    String melodia;
+    static String melodia="ME DA NULL!!!!!!!!!!!!!";
 
     /**
      * play the alarm
      */
-    public void playSound() {
-        if (Botonera.alarmActive == true && Reloj.hora == Reloj.alarma && ringON == true) {
+    public static void playSound() {
             System.out.println(melodia);
-        }
-
     }
 }

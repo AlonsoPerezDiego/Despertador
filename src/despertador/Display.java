@@ -18,8 +18,8 @@ public class Display {
     /**
      * show the hour
      */
-    public static void showHr(int hora, int minutos) {
-        System.out.println(hora+":"+minutos);
+    public static void showHr(int hora, int minutos, int sec) {
+        System.out.println(hora+":"+minutos+":"+sec);
     }
 
     /**
@@ -40,6 +40,19 @@ public class Display {
         Display.ledclock = ledclock;
         Display.ledalarm = ledAlarm;
         Display.ledset = ledset;
+        if(Display.ledclock==true){
+            System.out.print("〇");
+        }else{
+            System.out.print("   ");
+        }
+        if(Display.ledalarm==true){
+            System.out.print(" Alarm");
+        }else{
+            System.out.print("   ");
+        }
+        if(Display.ledset==true){
+            System.out.println(" SET");
+        }
     }
 
 }

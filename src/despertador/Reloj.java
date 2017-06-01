@@ -14,13 +14,26 @@ import java.time.LocalTime;
 public class Reloj {
 
    static LocalTime hora, alarma;
-   static int horas=hora.getHour();
-   static int minutos=hora.getMinute();
-    /**+
-     * menu
-     */
-    public void main() {
 
+    public Reloj() {
+        hora = LocalTime.now();
+        alarma = LocalTime.now();
+        alarma = alarma.plusMinutes(1);
+    }
+   
+    /**
+     * Configuración
+     */
+    public void actualizar(){
+        hora = LocalTime.now().plusHours(Botonera.masH).plusMinutes(Botonera.masM);
+    }
+    
+    public void activarDesactivar(){
+        if(Botonera.alarmActive==false){
+            Botonera.alarmON();
+        }else{
+            Botonera.alarmOFF();
+        }
     }
 
 }

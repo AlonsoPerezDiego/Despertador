@@ -5,6 +5,8 @@
  */
 package despertador;
 
+import java.time.LocalTime;
+
 /**
  * interfaz methods
  *
@@ -13,20 +15,23 @@ package despertador;
 public class Botonera {
 
     static boolean alarmActive, setHR, setAlarm;
+    static int masH = 0, masM = 0,masAH = 0, masAM = 0;
 
     /**
      * set the alarm ON
      */
-    public void alarmON() {
+    public static void alarmON() {
         alarmActive = true;
         Altavoz.ringON = true;
+        Display.showLED(false, true, false);
     }
 
     /**
      * set the alarm OFF
      */
-    public void alarmOFF() {
+    public static void alarmOFF() {
         alarmActive = false;
+        Display.showLED(false, false, false);
     }
 
     /**
@@ -34,7 +39,7 @@ public class Botonera {
      */
     public static void configHr() {
         Display.showLED(true, false, true);
-        Display.showAlarm(Reloj.horas,Reloj.minutos);
+        Display.showAlarm(Reloj.hora.getHour(),Reloj.hora.getMinute());
 
     }
 
@@ -43,33 +48,38 @@ public class Botonera {
      */
     public static void configAlarm() {
         Display.showLED(false, true, true);
-        Display.showHr(Reloj.horas,Reloj.minutos);
+        Display.showHr(Reloj.hora.getHour(),Reloj.hora.getMinute(), Reloj.hora.getSecond());
     }
 
     /**
      * increase the hour
      */
-    public void plusHr(int hora) {
-        if(Display.ledclock==true ||Display.ledalarm==true){
-        hora++;
-       
+    public static void plusHr() {
+        if(Display.ledclock==true){
+            masH++;
+        }else if(Display.ledalarm==true){
+            masAH++;
         }
-
+        
+        Display.showHr(Reloj.hora.getHour(),Reloj.hora.getMinute(), Reloj.hora.getSecond());
     }
 
     /**
      * increase the minutes
      */
-    public void plusMin(int minutos) {
-        if(Display.ledclock==true ||Display.ledalarm==true){
-        minutos++;
+    public static void plusMin() {
+        if(Display.ledclock==true ){
+            masM++;
+        }else if(Display.ledalarm==true){
+            masAM++;
         }
+        Display.showHr(Reloj.hora.getHour(),Reloj.hora.getMinute(), Reloj.hora.getSecond());
     }
 
     /**
      * stop the alarm melody
      */
-    public void stopAlarm() {
+    public static void stopAlarm() {
         if (Altavoz.ringON == true) {
             Altavoz.ringON = false;
         }
